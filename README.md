@@ -91,12 +91,12 @@ sudo systemctl reload caddy
 | GET    | `/api/pokemon`                  | Search Pokémon by name                |
 | GET    | `/api/pokemon/type/:type`       | Get Pokémon by type (e.g., fire)      |
 | GET    | `/api/pokemon/all`              | Paginated list of all Pokémon         |
-| POST   | `/api/team/create`              | Create a new team                     |
-| POST   | `/api/team/:teamId/pokemon`     | Add Pokémon to team                   |
-| GET    | `/api/team/:teamId`             | Get a team by ID                      |
-| GET    | `/api/team/`                    | List all user's teams                 |
-| GET    | `/api/team/:teamId/evaluation`  | Evaluate strengths/weaknesses         |
-| DELETE | `/api/team/:teamId`             | Delete a team                         |
+| POST   | `/api/teams/create`              | Create a new team                     |
+| POST   | `/api/teams/:teamId/pokemon`     | Add Pokémon to team                   |
+| GET    | `/api/teams/:teamId`             | Get a team by ID                      |
+| GET    | `/api/teams/`                    | List all user's teams                 |
+| GET    | `/api/teams/:teamId/evaluation`  | Evaluate strengths/weaknesses         |
+| DELETE | `/api/teams/:teamId`             | Delete a team                         |
 
 
 ---
@@ -123,7 +123,7 @@ We welcome contributions! Here's how:
 
 ## License
 
-This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
+This project is licensed under the **MIT License**.
 
 ---
 
