@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Team Uchiha",
+    "teamId": "1",
+    "pokemons": [
+      {
+        "name": "pikachu",
+        "pokeId": 25,
+        "types": ["electric", "steel"],
+        "spriteUrl": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png"
+      },
+      {
+        "name": "poliwag",
+        "pokeId": 60,
+        "types": ["water"],
+        "spriteUrl": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/60.png"
+      },
+      {
+        "name": "pidgeot",
+        "pokeId": 60,
+        "types": ["flying"],
+        "spriteUrl": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/15.png"
+      }
+    ]
+  },
+  {
+    "name": "Team Naruto",
+    "teamId": "2",
+    "pokemons": [
+      {
+        "name": "poliwag",
+        "pokeId": 60,
+        "types": ["water"],
+        "spriteUrl": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/60.png"
+      }
+    ]
+  }
+]
