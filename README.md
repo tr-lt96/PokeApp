@@ -1,110 +1,85 @@
-# Pokédex Team Builder 🧩
+# PokeApp - Pokémon Team Builder
 
-## 📌 Project Overview
-
-**Pokédex Team Builder** is a full-stack web app that allows users to search Pokémon, create custom teams, and analyze type strengths/weaknesses. It integrates with [PokéAPI](https://pokeapi.co/) and provides secure user authentication, cached Pokémon data, and a responsive REST API.
-
-### 🔍 What does it solve?
-
-- Helps Pokémon fans plan battle strategies with real-time data.
-- Allows users to save and manage multiple Pokémon teams.
-- Provides a structured backend that caches frequently accessed Pokémon data.
-
-### ✨ Key Features
-
-- 🔐 JWT-based authentication (register/login/logout)
-- 📦 Search & cache Pokémon info from PokeAPI
-- 🧠 Evaluate team strengths and weaknesses using a custom type chart
-- 🧙 Pokémon filtering by type, pagination
-- 🔧 Change password, view user info and owned teams
-- ⚡ Caddy HTTPS-ready reverse proxy configuration
+PokeApp is a full-stack web application designed for Pokémon enthusiasts. It allows users to register/login, search Pokémon from the PokéAPI, create a custom team of up to 6 Pokémon, and analyze their strengths and weaknesses. The app caches Pokémon data to optimize performance and supports authentication and protected routes.
 
 ---
 
-## 🛠 Installation Instructions
+## Project Overview
 
-### ✅ Prerequisites
+- **What is it?**  
+  A full-stack Pokémon Team Builder web app built with Node.js, Express, MongoDB, and Caddy for deployment.
 
-- Node.js v16+
-- npm
+- **What problem does it solve?**  
+  It helps users build strategic Pokémon teams and view their overall type advantages and disadvantages.
+
+- **Why is it useful?**  
+  Provides quick access to Pokémon data, user-friendly team management, and educational insights into Pokémon type matchups.
+
+- **Key Features:**
+  - User registration and JWT-based authentication
+  - Secure password hashing and change password flow
+  - Team creation, evaluation, and deletion
+  - Pokémon search with live cache updates
+  - RESTful API design with validations
+  - Pokémon type filtering and pagination
+
+---
+
+## Installation Instructions
+
+### Prerequisites:
+
+- Node.js (v16+)
+- npm (Node Package Manager)
 - MongoDB (local or cloud)
-- (Optional for HTTPS) Caddy v2
+- Caddy (optional for production server)
+
+### Steps:
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/tr-lt96/PokeApp.git
+cd PokeApp
+
+# 2. Install dependencies
+npm install
+
+# 3. Create .env or config.js for environment variables
+# Example values:
+PORT=3000
+MONGO_URI=mongodb://localhost:27017/pokeapp
+JWT_SECRET=your_jwt_secret
+POKE_API_BASE_URL=https://pokeapi.co/api/v2
+
+# 4. Start the backend
+npm run dev
+```
 
 ---
 
-### 🔧 Backend Setup
-
-1. **Navigate into the project:**
-
-   ```bash
-   cd Backend
-   ```
-
-2. **Install dependencies:**
-
-   ```bash
-   npm install
-   ```
-
-3. **Environment setup:**
-
-   Create a `.env` file:
-
-   ```env
-   PORT=3000
-   MONGODB_URI=mongodb://localhost:27017/pokemonapp
-   JWT_SECRET=your_jwt_secret
-   ```
-
-4. **Run the server:**
-
-   ```bash
-   npm start
-   ```
-
-   By default, your backend will run on:  
-   `http://localhost:3000`
-
----
-
-## 🌐 Caddy Setup for Localhost or Domain
+## Caddy Setup for Deployment
 
 If you want to serve the backend securely via Caddy:
 
-1. **Install Caddy:**  
-   Follow [official Caddy instructions](https://caddyserver.com/docs/install).
+1. Install Caddy: Follow the instruction from [Practical 2](https://canvas.qut.edu.au/courses/21188/pages/2-dot-3-practical?module_item_id=1901576).
 
-2. **Create a Caddyfile** at the root of your project:
 
-   ```caddy
-   # For production (domain-based)
-   yourdomain.com {
-       reverse_proxy localhost:3000
-   }
+2. Example `Caddyfile` (for `n11423714.ifn666.com`):
 
-   # For local development (HTTP)
-   localhost:80 {
-       reverse_proxy localhost:3000
-   }
-   ```
+```
+n11423714.ifn666.com {
+  reverse_proxy localhost:3000
+}
+```
 
-3. **Run Caddy:**
-
-   ```bash
-   sudo caddy run --config ./Caddyfile
-   ```
+3. Reload Caddy:
+```bash
+sudo systemctl reload caddy
+```
 
 ---
 
-## 🚀 Usage Instructions
-
-After login, include the token in your headers:
-
-```
-Authorization: Bearer <your-token>
-```
-
-### 🧪 Common API Endpoints
+## API Endpoints
 
 | Method | Endpoint                        | Description                           |
 |--------|----------------------------------|---------------------------------------|
@@ -123,67 +98,57 @@ Authorization: Bearer <your-token>
 | GET    | `/api/team/:teamId/evaluation`  | Evaluate strengths/weaknesses         |
 | DELETE | `/api/team/:teamId`             | Delete a team                         |
 
----
-
-## 💻 Contributing
-
-Want to contribute?
-
-1. Clone or unzip the repo
-2. Create a new branch:  
-   `git checkout -b feature/myFeature`
-3. Make your changes
-4. Test locally
-5. Submit via email or GitHub if needed
-
-**Guidelines:**
-
-- Use consistent formatting (Prettier)
-- Write clean, modular code
-- Test endpoints before pushing changes
 
 ---
 
-## 🧱 Technologies Used
+## Usage Instructions
 
-- Node.js + Express
+1. Register or Login to get a JWT token.
+2. Include the JWT token in the `Authorization` header as `Bearer <token>` for all protected endpoints.
+3. Start building your Pokémon team and fetch analysis data!
+
+---
+
+## Contributing
+
+We welcome contributions! Here's how:
+
+1. Fork the repo
+2. Create a new branch: `git checkout -b feature-name`
+3. Make changes and commit: `git commit -m "Add feature"`
+4. Push changes: `git push origin feature-name`
+5. Submit a Pull Request
+
+---
+
+## License
+
+This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
+
+---
+
+## Technologies Used
+
+- Node.js
+- Express.js
 - MongoDB + Mongoose
-- JWT + bcrypt
-- PokéAPI integration
-- Caddy (reverse proxy, HTTPS)
-- React (frontend, not covered here)
+- Caddy (deployment)
+- PokeAPI
+- JWT for Auth
+- bcrypt for password hashing
 
 ---
 
-## 🎯 Future Features
+## Future Features
 
-- Avatar upload
-- Public team sharing
-- Rate Pokémon
-- Battle simulation
-
----
-
-## 🐞 Reporting Issues
-
-Having trouble?
-
-1. Make sure MongoDB is running.
-2. Check your `.env` file is correct.
-3. Check console logs in both backend and frontend.
-4. Validate API requests with Postman or Hoppscotch.
-
-Still stuck? Create a structured report:
-
-```text
-Endpoint: POST /api/team/create
-Payload: { name: "Ash Team" }
-Error: 401 Unauthorized
-```
+- Admin dashboard
+- Social sharing of teams
+- Favorite Pokémon persistence
 
 ---
 
-## 📜 License
+## Reporting Issues
 
-This project is distributed for educational use.  
-Use it freely, but give credit where due.
+Please submit bugs, questions, or suggestions via GitHub [Issues](https://github.com/tr-lt96/PokeApp/issues).
+
+---
